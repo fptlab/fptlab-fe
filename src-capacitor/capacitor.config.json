@@ -1,0 +1,7 @@
+{
+  "appId": "com.fptlab.app",
+  "appName": "fptlabApp",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

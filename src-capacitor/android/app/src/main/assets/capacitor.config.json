@@ -1,0 +1,10 @@
+{
+  "appId": "com.fptlab.app",
+  "appName": "fptlabApp",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "server": {
+    "url": "http://172.26.224.1:8080"
+  }
+}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">fptlabApp</string>
+    <string name="title_activity_main">fptlabApp</string>
+    <string name="package_name">com.fptlab.app</string>
+    <string name="custom_url_scheme">com.fptlab.app</string>
+</resources>
