@@ -1,0 +1,22 @@
+import { ApiFactory } from 'src/api/apiFactory'
+const HelloService = ApiFactory.get('hello')
+import { computed, ref } from 'vue'
+import { useQuasar } from 'quasar'
+
+const helloMessage = ref('')
+
+export default function useCatalog () {
+  const $q = useQuasar()
+
+  async function greeting (queryParams) {
+    $q.loading.show()
+    const { data } = await HelloService.greeting(queryParams)
+    helloMessage.value = data
+    $q.loading.hide()
+  }
+
+  return {
+    helloMessage: computed(() => helloMessage.value),
+    greeting
+  }
+}

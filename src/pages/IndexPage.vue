@@ -1,3 +1,14 @@
+<script setup>
+import useHello from 'src/composables/useHello'
+import { onMounted } from 'vue'
+
+const { greeting } = useHello()
+
+onMounted(async () => {
+  await greeting() // una volta fatta sta chiamata avrai helloMessage definito dentro il composable accessibile da tutti i componenti perchè dichiarato fuori dalla funzione
+})
+
+</script>
 <template>
   <q-page class="flex flex-center">
     <img
@@ -7,11 +18,3 @@
     >
   </q-page>
 </template>
-
-<script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'IndexPage'
-})
-</script>
