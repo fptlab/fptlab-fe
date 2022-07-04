@@ -1,6 +1,6 @@
 import ApiService from 'src/api/apiService'
 
-const resource = '/users'
+const resource = '/hello'
 
 export default {
   greeting () {

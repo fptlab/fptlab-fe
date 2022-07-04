@@ -3,7 +3,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import { API_BASE_URL } from './config'
 import JwtService from './jwtService'
-import { Notify } from 'quasar'
+import { Loading, Notify } from 'quasar'
 
 const app = createApp()
 
@@ -15,7 +15,12 @@ const authInterceptor = (config) => {
 }
 
 const errorInterceptor = async error => {
+  Loading.hide()
   if (!error.response) {
+    Notify.create({
+      type: 'negative',
+      message: error.message
+    })
     return Promise.reject(error)
   }
 
@@ -81,6 +86,15 @@ const ApiService = {
 
   post (resource, body) {
     return app.axios.post(`${resource}`, body)
+  },
+
+  postEncoded (resource, body) {
+    return app.axios.post(`${resource}`,
+      new URLSearchParams(body), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
   },
 
   update (resource, params) {

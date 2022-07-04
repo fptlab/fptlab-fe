@@ -1,7 +1,9 @@
 import helloService from 'src/api/helloService'
+import loginService from 'src/api/loginService'
 
 const services = {
-  hello: helloService
+  hello: helloService,
+  login: loginService
 }
 
 export const ApiFactory = {
