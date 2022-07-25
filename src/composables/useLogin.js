@@ -17,9 +17,17 @@ export default function useCatalog () {
     $q.loading.hide()
   }
 
+  async function register (user) {
+    $q.loading.show()
+    const { data } = await LoginService.register(user)
+    console.log(data)
+    $q.loading.hide()
+  }
+
   return {
     token: computed(() => token.value),
     refreshToken: computed(() => refreshToken.value),
-    login
+    login,
+    register
   }
 }
