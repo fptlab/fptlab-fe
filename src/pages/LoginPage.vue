@@ -26,12 +26,12 @@ async function doLogin () {
         <div class="column items-center q-gutter-y-lg">
           <q-img :src="url" style="width: 200px"/>
           <div class="column q-gutter-y-md">
-            <q-input bg-color="white" rounded outlined color="green" v-model="email" label="Nome utente" :dense="true">
+            <q-input bg-color="white" outlined color="green" v-model="email" label="Nome utente" :dense="true">
               <template v-slot:append>
                 <q-icon name="man" color="green"/>
               </template>
             </q-input>
-            <q-input bg-color="white" color="green" rounded outlined :type="isPwd ? 'password' : 'text'" v-model="password" label="Password" :dense="true">
+            <q-input bg-color="white" color="green" outlined :type="isPwd ? 'password' : 'text'" v-model="password" label="Password" :dense="true">
               <template v-slot:append>
                 <q-icon
                   color="green"
