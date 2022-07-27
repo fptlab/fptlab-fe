@@ -6,6 +6,7 @@ import JwtService from './jwtService'
 import { Loading, Notify } from 'quasar'
 
 const app = createApp()
+let vuerouter
 
 const authInterceptor = (config) => {
   if (JwtService.getToken()) {
@@ -14,7 +15,7 @@ const authInterceptor = (config) => {
   return config
 }
 
-const errorInterceptor = async error => {
+const errorInterceptor = async (error, router) => {
   Loading.hide()
   if (!error.response) {
     Notify.create({
@@ -37,6 +38,7 @@ const errorInterceptor = async error => {
       console.log('401 UNAUTHORIZED')
       // TODO rimandare a login component magari
       JwtService.destroyToken()
+      vuerouter.push('/login')
       break
 
     default:
@@ -69,7 +71,8 @@ const responseInterceptor = response => {
 }
 
 const ApiService = {
-  init () {
+  init (router) {
+    vuerouter = router
     app.use(VueAxios, axios)
     app.axios.defaults.baseURL = API_BASE_URL
     app.axios.defaults.headers.common = {

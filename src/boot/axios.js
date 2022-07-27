@@ -1,3 +1,5 @@
 import ApiService from 'src/api/apiService'
 
-ApiService.init()
+export default ({ Vue, router }) => {
+  ApiService.init(router)
+}

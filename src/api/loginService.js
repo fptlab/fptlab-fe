@@ -2,6 +2,7 @@ import ApiService from 'src/api/apiService'
 
 const resource = '/login'
 const signup = '/auth/signup'
+const me = '/users/me'
 
 export default {
   login (user) {
@@ -10,5 +11,9 @@ export default {
 
   register (user) {
     return ApiService.post(signup + '', user)
+  },
+
+  getLoggedUser () {
+    return ApiService.get(me)
   }
 }

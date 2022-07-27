@@ -1,84 +1,35 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          <q-item
-            class="text-white"
-            clickable
-            tag="a"
-            to="/">
-            <q-item-section>
-              <q-item-label>FPT Lab</q-item-label>
-            </q-item-section>
-          </q-item>
-        </q-toolbar-title>
-
-      </q-toolbar>
-    </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label header>
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
-
+  <q-layout view="hHh lpR fFf">
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <q-footer elevated>
+      <q-tabs
+        v-model="tab"
+        class="bg-black shadow-2" style="color: #81b93a">
+        <q-route-tab name="users" to="/admin/handle-users" exact>
+          <q-icon name="people" size="md"></q-icon>
+        </q-route-tab>
+        <q-route-tab name="bookings" to="/admin/handle-bookings" exact>
+          <q-icon name="event" size="md"></q-icon>
+        </q-route-tab>
+        <q-route-tab name="trainers" to="/admin/handle-trainers" exact>
+          <q-icon name="sports_gymnastics" size="md"></q-icon>
+        </q-route-tab>
+      </q-tabs>
+    </q-footer>
   </q-layout>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
+<script setup>
+import { onMounted, ref } from 'vue'
+import useLogin from 'src/composables/useLogin'
+const { getLoggedUser } = useLogin()
 
-const linksList = [
-  {
-    title: 'Registra utente',
-    icon: 'people',
-    caption: 'Registra un nuovo utente sulla piattaforma',
-    to: '/register'
-  }
-]
+const tab = ref('users')
 
-export default defineComponent({
-  name: 'MainLayout',
-
-  components: {
-    EssentialLink
-  },
-
-  setup () {
-    const leftDrawerOpen = ref(false)
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
+onMounted(async () => {
+  await getLoggedUser()
 })
 </script>

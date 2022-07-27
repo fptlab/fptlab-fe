@@ -2,9 +2,12 @@
 const routes = [
   {
     path: '/',
+    redirect: '/admin/handle-users',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      { path: 'admin/handle-users', component: () => import('pages/admin/handle-users/UsersPage.vue') },
+      { path: 'admin/handle-bookings', component: () => import('pages/admin/handle-bookings/BookingsPage.vue') },
+      { path: 'admin/handle-trainers', component: () => import('pages/admin/handle-trainers/TrainersPage.vue') }
     ]
   },
   {

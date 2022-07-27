@@ -1,10 +1,10 @@
 import { ApiFactory } from 'src/api/apiFactory'
 const LoginService = ApiFactory.get('login')
-import { computed, ref } from 'vue'
 import { useQuasar } from 'quasar'
+import JwtService from '../api/jwtService'
+import { computed, ref } from 'vue'
 
-const token = ref('')
-const refreshToken = ref('')
+const loggedUser = ref({})
 
 export default function useCatalog () {
   const $q = useQuasar()
@@ -12,8 +12,8 @@ export default function useCatalog () {
   async function login (queryParams) {
     $q.loading.show()
     const { data } = await LoginService.login(queryParams)
-    token.value = data.token
-    refreshToken.value = data.refreshToken
+    console.log(data)
+    JwtService.saveToken(data.result.token)
     $q.loading.hide()
   }
 
@@ -24,10 +24,17 @@ export default function useCatalog () {
     $q.loading.hide()
   }
 
+  async function getLoggedUser () {
+    $q.loading.show()
+    const { data } = await LoginService.getLoggedUser()
+    loggedUser.value = data.result
+    $q.loading.hide()
+  }
+
   return {
-    token: computed(() => token.value),
-    refreshToken: computed(() => refreshToken.value),
+    loggedUser: computed(() => loggedUser.value),
     login,
-    register
+    register,
+    getLoggedUser
   }
 }
