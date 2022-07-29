@@ -5,7 +5,7 @@ import { useQuasar } from 'quasar'
 
 const helloMessage = ref('')
 
-export default function useCatalog () {
+export default function useHello () {
   const $q = useQuasar()
 
   async function greeting (queryParams) {

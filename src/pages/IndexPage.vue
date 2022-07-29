@@ -7,7 +7,7 @@ const { greeting, helloMessage } = useHello()
 const { loggedUser } = useLogin()
 
 onMounted(async () => {
-  await greeting() // una volta fatta sta chiamata avrai helloMessage definito dentro il composable accessibile da tutti i componenti perchè dichiarato fuori dalla funzione
+  await greeting()
 })
 
 </script>

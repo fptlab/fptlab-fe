@@ -1,23 +1,22 @@
 import { ApiFactory } from 'src/api/apiFactory'
-const LoginService = ApiFactory.get('login')
+const UserService = ApiFactory.get('user')
 import { useQuasar } from 'quasar'
-import JwtService from '../api/jwtService'
 import { computed, ref } from 'vue'
 
 const loggedUser = ref({})
 
-export default function useLogin () {
+export default function useUser () {
   const $q = useQuasar()
 
-  async function login (queryParams) {
+  async function profile () {
     $q.loading.show()
-    const { data } = await LoginService.login(queryParams)
-    JwtService.saveToken(data.result.token)
+    const { data } = await UserService.profile()
+    loggedUser.value = data.result
     $q.loading.hide()
   }
 
   return {
     loggedUser: computed(() => loggedUser.value),
-    login
+    profile
   }
 }

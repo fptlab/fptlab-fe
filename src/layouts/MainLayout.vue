@@ -24,12 +24,12 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import useLogin from 'src/composables/useLogin'
-const { getLoggedUser } = useLogin()
+import useUser from 'src/composables/useUser'
+const { profile } = useUser()
 
 const tab = ref('users')
 
 onMounted(async () => {
-  await getLoggedUser()
+  await profile()
 })
 </script>
