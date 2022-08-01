@@ -57,7 +57,7 @@ async function doLogin () {
               </template>
             </q-input>
             <q-btn text-color="white" label="Login" class="full-width bg-primary" type="submit" push/>
-            <div class="full-width text-center q-gutter-x-sm">
+            <div class="full-width text-center q-gutter-x-sm q-mt-md">
               <span class="text-white">Non hai un account?</span>
               <span class="text-bold text-primary cursor-pointer" style="font-size: 1.05rem" @click="router.push('/register')">Registrati!</span>
             </div>
