@@ -13,7 +13,6 @@ onMounted(async () => {
       letter: user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()
     }
   })
-  console.log('AOOAOA', users.value)
 })
 </script>
 

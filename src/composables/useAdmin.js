@@ -5,7 +5,7 @@ import { computed, ref } from 'vue'
 
 const userList = ref({})
 
-export default function useCatalog () {
+export default function useAdmin () {
   const $q = useQuasar()
 
   async function getUsers () {

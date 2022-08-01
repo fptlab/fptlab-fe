@@ -15,19 +15,11 @@ const authInterceptor = (config) => {
   return config
 }
 
-const errorInterceptor = async (error, router) => {
+const errorInterceptor = async (error) => {
+  console.error(error.response.status, error.message)
   Loading.hide()
-  if (!error.response) {
-    Notify.create({
-      type: 'negative',
-      message: error.message
-    })
-    return Promise.reject(error)
-  }
-
   switch (error.response.status) {
     case 400:
-      console.error(error.response.status, error.message)
       Notify.create({
         type: 'negative',
         message: error.response.data.message
@@ -35,17 +27,21 @@ const errorInterceptor = async (error, router) => {
       break
 
     case 401:
-      console.log('401 UNAUTHORIZED')
-      // TODO rimandare a login component magari
-      JwtService.destroyToken()
-      vuerouter.push('/login')
+      if (error.response.config.url === '/login') {
+        Notify.create({
+          type: 'negative',
+          message: error.response.data.message
+        })
+      } else {
+        JwtService.destroyToken()
+        vuerouter.push('/login')
+      }
       break
 
     default:
-      console.log(error.response)
       Notify.create({
         type: 'negative',
-        message: error.response.data.error.message,
+        message: error.response.data.message,
         html: true
       })
   }

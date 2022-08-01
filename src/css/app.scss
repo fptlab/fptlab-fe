@@ -1,1 +1,9 @@
-// app global css in SCSS form
+.q-field--error .q-field__bottom {
+  padding-left: 0;
+}
+.q-icon.text-negative {
+  font-size: 18px;
+}
+.q-form .mw-input {
+ min-width: 232px;
+}
