@@ -5,8 +5,8 @@ import { useRouter } from 'vue-router'
 
 const { login } = useLogin()
 const url = ref(require('../assets/fptlab_logo.png'))
-const email = ref('')
-const password = ref('')
+const email = ref('admin@gmail.com')
+const password = ref('admin')
 const isPwd = ref(true)
 const router = useRouter()
 
@@ -20,9 +20,9 @@ async function doLogin () {
 </script>
 
 <template>
-  <q-layout>
+  <q-layout class="login-background">
     <q-page-container>
-      <q-page class="bg-black column no-wrap items-center content-stretch justify-center">
+      <q-page class="column no-wrap items-center content-stretch justify-center">
           <q-img :src="url" style="width: 200px" class="q-mb-lg"/>
           <q-form @submit="doLogin" class="q-gutter-y-xs">
             <q-input bg-color="white"
@@ -68,4 +68,7 @@ async function doLogin () {
 </template>
 
 <style scoped lang="scss">
+  .login-background {
+    background-image: url("../assets/fptlab_background.png");
+  }
 </style>

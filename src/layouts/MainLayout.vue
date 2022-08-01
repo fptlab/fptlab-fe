@@ -7,9 +7,9 @@
     <q-footer elevated>
       <q-tabs
         v-model="tab"
-        class="bg-black shadow-2" style="color: #81b93a">
+        class="bg-primary text-white">
         <q-route-tab name="users" to="/admin/handle-users" exact>
-          <q-icon name="people" size="md"></q-icon>
+          <q-icon name="people" size="md" col></q-icon>
         </q-route-tab>
         <q-route-tab name="bookings" to="/admin/handle-bookings" exact>
           <q-icon name="event" size="md"></q-icon>

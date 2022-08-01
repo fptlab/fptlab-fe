@@ -3,7 +3,8 @@ const AdminService = ApiFactory.get('admin')
 import { useQuasar } from 'quasar'
 import { computed, ref } from 'vue'
 
-const userList = ref({})
+const userList = ref([])
+const user = ref({})
 
 export default function useAdmin () {
   const $q = useQuasar()
@@ -15,8 +16,17 @@ export default function useAdmin () {
     $q.loading.hide()
   }
 
+  async function getUser (userId) {
+    $q.loading.show()
+    const { data } = await AdminService.getUser(userId)
+    user.value = data.result
+    $q.loading.hide()
+  }
+
   return {
     getUsers,
-    userList: computed(() => userList.value)
+    getUser,
+    userList: computed(() => userList.value),
+    user: computed(() => user.value)
   }
 }

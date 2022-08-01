@@ -16,8 +16,11 @@ const authInterceptor = (config) => {
 }
 
 const errorInterceptor = async (error) => {
-  console.error(error.response.status, error.message)
   Loading.hide()
+  if (!error.response) {
+    // JwtService.destroyToken()
+    vuerouter.push('/404')
+  }
   switch (error.response.status) {
     case 400:
       Notify.create({
@@ -36,6 +39,11 @@ const errorInterceptor = async (error) => {
         JwtService.destroyToken()
         vuerouter.push('/login')
       }
+      break
+
+    case 503:
+      JwtService.destroyToken()
+      vuerouter.push('/login')
       break
 
     default:
