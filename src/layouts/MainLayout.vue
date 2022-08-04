@@ -16,11 +16,11 @@ onMounted(async () => {
   <q-layout view="hHh lpR fFf" class="fpt-bg-gradient">
 
     <q-header v-if="layoutData.isShown" class="q-pa-md bg-transparent flex text-white justify-between items-center" reveal>
-      <q-icon name="fa-solid fa-angle-left" class="text-primary" @click="$router.back()"></q-icon>
+      <q-icon name="fa-solid fa-angle-left" class="text-white" @click="$router.back()"></q-icon>
       <div class="text-h6 text-capitalize">
         {{ layoutData.title }}
       </div>
-      <q-icon name="fa-solid fa-ellipsis" class="text-primary"></q-icon>
+      <q-icon name="fa-solid fa-ellipsis" class="text-white"></q-icon>
     </q-header>
 
     <q-page-container>
@@ -28,14 +28,14 @@ onMounted(async () => {
     </q-page-container>
 
     <q-footer class="bg-black">
-      <q-tabs v-model="tab" class="text-primary">
-        <q-route-tab name="users" to="/admin/handle-users" exact class="unactive-icon" active-class="active-icon">
+      <q-tabs v-model="tab" class="text-white">
+        <q-route-tab name="users" to="/admin/handle-users" exact class="unactive-icon" active-class="active-icon text-primary">
           <q-icon name="people" size="md"></q-icon>
         </q-route-tab>
-        <q-route-tab name="bookings" to="/admin/handle-bookings" exact class="unactive-icon" active-class="active-icon">
+        <q-route-tab name="bookings" to="/admin/handle-bookings" exact class="unactive-icon" active-class="active-icon text-primary">
           <q-icon name="event" size="md"></q-icon>
         </q-route-tab>
-        <q-route-tab name="trainers" to="/admin/handle-trainers" exact class="unactive-icon" active-class="active-icon">
+        <q-route-tab name="trainers" to="/admin/handle-trainers" exact class="unactive-icon" active-class="active-icon text-primary">
           <q-icon name="sports_gymnastics" size="md"></q-icon>
         </q-route-tab>
       </q-tabs>

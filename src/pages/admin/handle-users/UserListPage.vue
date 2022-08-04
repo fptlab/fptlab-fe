@@ -57,7 +57,7 @@ onMounted(async () => {
           </q-item-section>
 
           <q-item-section side>
-            <q-icon name="fa-solid fa-circle" :color="user.enabled ? 'positive' : 'negative'" size="xs"/>
+            <q-icon name="fiber_smart_record" :color="user.enabled ? 'positive' : 'negative'" size="xs"/>
           </q-item-section>
 
           <q-item-section side>
