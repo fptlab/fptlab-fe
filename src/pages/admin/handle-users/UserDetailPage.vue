@@ -21,7 +21,7 @@ onMounted(async () => {
           <q-avatar color="primary">
             <img src="../../../assets/avatar2.png">
           </q-avatar>
-          <div class="text-h5 text-primary column">
+          <div class="text-h5 text-white column">
             <div>{{user.firstName}} {{user.lastName}}</div>
             <div class="text-caption text-primary">{{user.email}}</div>
           </div>
