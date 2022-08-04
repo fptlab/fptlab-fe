@@ -1,13 +1,34 @@
+<script setup>
+import { onMounted, ref } from 'vue'
+import useUser from 'src/composables/useUser'
+import useMainLayout from 'src/composables/useMainLayout'
+const { profile } = useUser()
+const { layoutData } = useMainLayout()
+
+const tab = ref('users')
+
+onMounted(async () => {
+  await profile()
+})
+</script>
+
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="hHh lpR fFf" class="fpt-bg-gradient">
+
+    <q-header v-if="layoutData.isShown" class="q-pa-md bg-transparent flex text-white justify-between items-center" reveal>
+      <q-icon name="fa-solid fa-angle-left" class="text-primary" @click="$router.back()"></q-icon>
+      <div class="text-h6 text-capitalize">
+        {{ layoutData.title }}
+      </div>
+      <q-icon name="fa-solid fa-ellipsis" class="text-primary"></q-icon>
+    </q-header>
+
     <q-page-container>
       <router-view />
     </q-page-container>
 
-    <q-footer elevated>
-      <q-tabs
-        v-model="tab"
-        class="bg-primary text-white">
+    <q-footer class="bg-black">
+      <q-tabs v-model="tab" class="text-primary">
         <q-route-tab name="users" to="/admin/handle-users" exact class="unactive-icon" active-class="active-icon">
           <q-icon name="people" size="md"></q-icon>
         </q-route-tab>
@@ -21,18 +42,6 @@
     </q-footer>
   </q-layout>
 </template>
-
-<script setup>
-import { onMounted, ref } from 'vue'
-import useUser from 'src/composables/useUser'
-const { profile } = useUser()
-
-const tab = ref('users')
-
-onMounted(async () => {
-  await profile()
-})
-</script>
 
 <style lang="scss">
 .active-icon {

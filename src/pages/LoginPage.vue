@@ -20,7 +20,7 @@ async function doLogin () {
 </script>
 
 <template>
-  <q-layout class="login-background">
+  <q-layout class="fpt-bg-gradient">
     <q-page-container>
       <q-page class="column no-wrap items-center content-stretch justify-center">
           <q-img :src="url" style="width: 200px" class="q-mb-lg"/>
