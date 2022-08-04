@@ -34,13 +34,62 @@ onMounted(async () => {
         </div>
         <div class="column items-center">
           <q-icon name="fiber_smart_record" size="md" @click="user.enabled = !user.enabled" :color="user.enabled ? 'primary' : 'negative'" ></q-icon>
-          <!--div :class="user.enabled ? 'text-caption text-primary' : 'text-caption text-negative'">{{ user.enabled ? 'Attivo' : 'Disattivo' }}</div-->
-          <!--q-toggle v-model="user.enabled" color="primary" keep-color icon="fiber_smart_record"/-->
         </div>
+      </div>
+    </div>
+    <div class="q-pa-md">
+      <span class="text-h6">Le tue sottoscrizioni</span>
+      <div class="row no-wrap q-gutter-md overflow-auto q-py-md">
+        <q-card class="shadow-4 subscription-card">
+          <q-card-section class="row justify-between items-center">
+            <div class="column">
+              <div class="text-bold text-primary text-h6">Test1</div>
+              <div class="text-caption text-bold">Mezz'ora</div>
+              <div class="text-caption text-italic">04/08/2022</div>
+            </div>
+            <div class="column items-center">
+              <div class="text-primary text-h4 text-white">10</div>
+            </div>
+          </q-card-section>
+        </q-card>
+        <q-card class="shadow-4 subscription-card subscription-card__expired">
+          <q-card-section class="row justify-between items-center">
+            <div class="column">
+              <div class="text-bold text-primary text-h6">Test1</div>
+              <div class="text-caption text-bold">Mezz'ora</div>
+              <div class="text-caption text-italic">02/08/2022</div>
+            </div>
+            <div class="column items-center">
+              <div class="text-primary text-h4 text-white">0</div>
+            </div>
+          </q-card-section>
+        </q-card>
+        <q-card class="shadow-4 subscription-card subscription-card__expired">
+          <q-card-section class="row justify-between items-center">
+            <div class="column">
+              <div class="text-bold text-primary text-h6">Test2</div>
+              <div class="text-caption text-bold">Orario</div>
+              <div class="text-caption text-italic">20/07/2022</div>
+            </div>
+            <div class="column items-center">
+              <div class="text-primary text-h4 text-white">0</div>
+            </div>
+          </q-card-section>
+        </q-card>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+.subscription-card {
+  width: 50vw;
+  min-width: 50vw;
+  border-radius: 20px;
+  background: linear-gradient(315deg, #638229 0%, rgb(129, 185, 58) 45%, transparent 0%);
+
+  &__expired {
+    background: linear-gradient(315deg, #e87c03 0%, rgb(232, 124, 3) 45%, transparent 0%)
+  }
+}
 </style>

@@ -27,6 +27,7 @@ npm run lint
 ### Build the app for production
 ```bash
 quasar build
+quasar build -m capacitor -T [ios|android]
 ```
 
 ### Customize the configuration
