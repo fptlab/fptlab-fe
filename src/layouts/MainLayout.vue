@@ -8,13 +8,13 @@
       <q-tabs
         v-model="tab"
         class="bg-primary text-white">
-        <q-route-tab name="users" to="/admin/handle-users" exact>
-          <q-icon name="people" size="md" col></q-icon>
+        <q-route-tab name="users" to="/admin/handle-users" exact class="unactive-icon" active-class="active-icon">
+          <q-icon name="people" size="md"></q-icon>
         </q-route-tab>
-        <q-route-tab name="bookings" to="/admin/handle-bookings" exact>
+        <q-route-tab name="bookings" to="/admin/handle-bookings" exact class="unactive-icon" active-class="active-icon">
           <q-icon name="event" size="md"></q-icon>
         </q-route-tab>
-        <q-route-tab name="trainers" to="/admin/handle-trainers" exact>
+        <q-route-tab name="trainers" to="/admin/handle-trainers" exact class="unactive-icon" active-class="active-icon">
           <q-icon name="sports_gymnastics" size="md"></q-icon>
         </q-route-tab>
       </q-tabs>
@@ -33,3 +33,12 @@ onMounted(async () => {
   await profile()
 })
 </script>
+
+<style lang="scss">
+.active-icon {
+  opacity: 1 !important;
+}
+.unactive-icon {
+  opacity: 0.5;
+}
+</style>
