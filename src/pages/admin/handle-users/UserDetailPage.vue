@@ -1,10 +1,14 @@
 <script setup>
 import useAdmin from 'src/composables/useAdmin'
+import useMainLayout from 'src/composables/useMainLayout'
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 const { getUser, user } = useAdmin()
+const { layoutData } = useMainLayout()
 const route = useRoute()
+
+layoutData.value.isShown = false
 
 onMounted(async () => {
   const userid = route.params.userid

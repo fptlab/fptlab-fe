@@ -1,9 +1,14 @@
 <script setup>
 import useAdmin from 'src/composables/useAdmin'
+import useMainLayout from 'src/composables/useMainLayout'
 import { computed, onMounted, ref } from 'vue'
 import SkeletonList from 'components/SkeletonList'
 import SkeletonTitle from 'components/SkeletonTitle'
 const { getUsers, userList } = useAdmin()
+const { layoutData } = useMainLayout()
+
+layoutData.value.title = 'Lista utenti'
+layoutData.value.isShown = true
 
 const users = ref([])
 const text = ref('')
@@ -29,6 +34,7 @@ onMounted(async () => {
     }
   })
 })
+
 </script>
 <template>
   <div v-if="users.length <= 0">
@@ -36,43 +42,29 @@ onMounted(async () => {
     <skeleton-list></skeleton-list>
   </div>
   <div v-else>
-    <div class="text-primary q-pa-md fpt-header shadow-2">
-      <div class="row justify-between items-center">
-        <div class="text-h5 text-primary">
-          <div>Lista utenti</div>
-        </div>
-        <q-input borderless dark standout v-model="text" input-class="text-right" class="q-ml-md">
-          <template v-slot:append>
-            <q-icon v-if="text === ''" name="search" />
-            <q-icon v-else name="clear" class="cursor-pointer" @click="text = ''" />
-          </template>
-        </q-input>
-      </div>
-    </div>
-
     <q-list v-if="users.length > 0">
       <div v-for="user in filterList" :key="user.id">
         <q-item class="q-my-sm" clickable v-ripple :to="'handle-users/' + user.id">
           <q-item-section avatar>
-            <q-avatar color="secondary" class="shadow-3 text-white">
-              {{ user.letter }}
+            <q-avatar color="primary" class="shadow-3 text-white">
+              <img src="../../../assets/avatar2.png">
             </q-avatar>
           </q-item-section>
 
-          <q-item-section class="text-primary">
-            <q-item-label>{{ user.firstName }} {{ user.lastName }}</q-item-label>
-            <q-item-label caption lines="1" >{{ user.email }}</q-item-label>
+          <q-item-section>
+            <q-item-label class="text-white q-mb-xs">{{ user.firstName }} {{ user.lastName }}</q-item-label>
+            <q-item-label class="text-white" caption lines="1" >{{ user.email }}</q-item-label>
           </q-item-section>
 
           <q-item-section side>
-            <q-icon name="fiber_smart_record" :color="user.enabled ? 'positive' : 'negative'" size="xs"/>
+            <q-icon name="fa-solid fa-circle" :color="user.enabled ? 'positive' : 'negative'" size="xs"/>
           </q-item-section>
 
           <q-item-section side>
             <q-icon name="chevron_right" size="xs"/>
           </q-item-section>
         </q-item>
-        <q-separator class="q-ml-xl"/>
+        <q-separator color="grey" inset />
       </div>
     </q-list>
   </div>
