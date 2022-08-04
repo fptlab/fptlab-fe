@@ -38,7 +38,7 @@ onMounted(async () => {
       </div>
     </div>
     <div class="q-pa-md">
-      <span class="text-h6">Le tue sottoscrizioni</span>
+      <span class="text-h6 text-white">Le tue sottoscrizioni</span>
       <div class="row no-wrap q-gutter-md overflow-auto q-py-md">
         <q-card class="shadow-4 subscription-card">
           <q-card-section class="row justify-between items-center">
