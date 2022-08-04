@@ -14,21 +14,23 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="q-pa-md">
-    <q-card>
-      <q-card-section>
-        <div class="row justify-between">
-          <div class="text-h5 text-primary">{{user.firstName}} {{user.lastName}}</div>
-          <div>
-            <q-toggle v-model="user.enabled" color="primary" icon="fiber_smart_record"/>
+  <div>
+    <div class="text-primary q-pa-lg shadow-2 fpt-header">
+      <div class="row justify-between">
+        <div class="row q-gutter-md">
+          <q-avatar color="primary">
+            <img src="../../../assets/avatar2.png">
+          </q-avatar>
+          <div class="text-h5 text-primary column">
+            <div>{{user.firstName}} {{user.lastName}}</div>
+            <div class="text-caption text-primary">{{user.email}}</div>
           </div>
         </div>
-        <div class="text-caption text-primary">{{user.email}}</div>
-      </q-card-section>
-      <q-card-actions align="right">
-        <q-btn text-color="white" label="Aggiungi sottoscrizione" class="full-width bg-primary" push/>
-      </q-card-actions>
-    </q-card>
+        <div>
+          <q-toggle v-model="user.enabled" color="primary" icon="fiber_smart_record"/>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

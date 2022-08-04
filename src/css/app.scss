@@ -7,3 +7,9 @@
 .q-form .mw-input {
  min-width: 232px;
 }
+.fpt-header {
+  background-image: url("../assets/fpt_bar_background.png");
+  position: sticky;
+  top: 0;
+  z-index: 1
+}

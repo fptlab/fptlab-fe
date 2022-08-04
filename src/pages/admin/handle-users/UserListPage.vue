@@ -31,17 +31,19 @@ onMounted(async () => {
 
 <template>
   <div>
-    <router-view></router-view>
-    <q-toolbar class="text-primary q-px-md">
-      <q-toolbar-title>Lista utenti</q-toolbar-title>
-
-      <q-input borderless standout v-model="text" input-class="text-right" class="q-ml-md">
-        <template v-slot:append>
-          <q-icon v-if="text === ''" name="search" />
-          <q-icon v-else name="clear" class="cursor-pointer" @click="text = ''" />
-        </template>
-      </q-input>
-    </q-toolbar>
+    <div class="text-primary q-pa-md fpt-header shadow-2">
+      <div class="row justify-between items-center">
+        <div class="text-h5 text-primary">
+          <div>Lista utenti</div>
+        </div>
+        <q-input borderless dark standout v-model="text" input-class="text-right" class="q-ml-md">
+          <template v-slot:append>
+            <q-icon v-if="text === ''" name="search" />
+            <q-icon v-else name="clear" class="cursor-pointer" @click="text = ''" />
+          </template>
+        </q-input>
+      </div>
+    </div>
 
     <q-list v-if="users.length > 0">
       <div v-for="user in filterList" :key="user.id">
@@ -72,7 +74,4 @@ onMounted(async () => {
 </template>
 
 <style scoped lang="scss">
-.header-background {
-  background-image: url("../../../assets/fpt_bar_background.png");
-}
 </style>
