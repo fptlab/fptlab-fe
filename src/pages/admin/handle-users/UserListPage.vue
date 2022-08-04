@@ -1,6 +1,8 @@
 <script setup>
 import useAdmin from 'src/composables/useAdmin'
 import { computed, onMounted, ref } from 'vue'
+import SkeletonList from 'components/SkeletonList'
+import SkeletonTitle from 'components/SkeletonTitle'
 const { getUsers, userList } = useAdmin()
 
 const users = ref([])
@@ -10,8 +12,8 @@ const filterList = computed(() => {
   const filter = text.value
   if (filter) {
     return users.value.filter((user) => {
-      const fullname = user.firstName + ' ' + user.lastName
-      return fullname.toLowerCase().indexOf(filter.toLowerCase()) > -1
+      const fullName = user.firstName + ' ' + user.lastName
+      return fullName.toLowerCase().indexOf(filter.toLowerCase()) > -1
     })
   } else {
     return users.value
@@ -28,9 +30,12 @@ onMounted(async () => {
   })
 })
 </script>
-
 <template>
-  <div>
+  <div v-if="users.length <= 0">
+    <skeleton-title></skeleton-title>
+    <skeleton-list></skeleton-list>
+  </div>
+  <div v-else>
     <div class="text-primary q-pa-md fpt-header shadow-2">
       <div class="row justify-between items-center">
         <div class="text-h5 text-primary">
@@ -71,6 +76,7 @@ onMounted(async () => {
       </div>
     </q-list>
   </div>
+
 </template>
 
 <style scoped lang="scss">
