@@ -7,6 +7,7 @@ const routes = [
     children: [
       { path: 'admin/handle-users', component: () => import('pages/admin/handle-users/UserListPage.vue') },
       { path: 'admin/handle-users/:userid', component: () => import('pages/admin/handle-users/UserDetailPage.vue'), props: true },
+      { path: 'admin/handle-users/:userid/subscriptions', component: () => import('pages/admin/handle-users/UserSubscriptionListPage'), props: true },
       { path: 'admin/handle-bookings', component: () => import('pages/admin/handle-bookings/BookingsPage.vue') },
       { path: 'admin/handle-trainers', component: () => import('pages/admin/handle-trainers/TrainersPage.vue') }
     ]
