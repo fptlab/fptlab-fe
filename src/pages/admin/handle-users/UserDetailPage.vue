@@ -10,6 +10,33 @@ const route = useRoute()
 
 layoutData.value.isShown = false
 
+const subscriptionList = [
+  {
+    id: 1,
+    name: 'WALLR',
+    type: 'HALF_HOUR',
+    startDate: '04/08/2022',
+    lessonLeft: 10,
+    active: true
+  },
+  {
+    id: 2,
+    name: 'MAMMT',
+    type: 'HOUR',
+    startDate: '02/07/2022',
+    lessonLeft: 0,
+    active: false
+  },
+  {
+    id: 3,
+    name: 'Test2',
+    type: 'HALF_HOUR',
+    startDate: '20/06/2022',
+    lessonLeft: 0,
+    active: false
+  }
+]
+
 onMounted(async () => {
   const userid = route.params.userid
   await getUser(userid)
@@ -40,39 +67,17 @@ onMounted(async () => {
     <div class="q-pa-md">
       <span class="text-h6 text-white">Le tue sottoscrizioni</span>
       <div class="row no-wrap q-gutter-md overflow-auto q-py-md">
-        <q-card class="shadow-4 subscription-card">
-          <q-card-section class="row justify-between items-center">
-            <div class="column">
-              <div class="text-bold text-primary text-h6">Test1</div>
-              <div class="text-caption text-bold">Mezz'ora</div>
-              <div class="text-caption text-italic">04/08/2022</div>
+        <q-card :class="sub.active ? 'subscription-card' : 'subscription-card subscription-card__expired'" v-for="sub in subscriptionList" :key="sub.id">
+          <q-card-section class="row justify-between items-end">
+            <div class="column q-gutter-xs">
+              <div class="text-bold text-primary text-h6">{{sub.name}}</div>
+              <q-img class="q-mb-xs" src="../../../assets/workout_1h.png" v-if="sub.type === 'HOUR'" style="width: 60px"></q-img>
+              <q-img class="q-mb-xs" src="../../../assets/workout_half1h.png" v-if="sub.type === 'HALF_HOUR'" style="width: 60px"></q-img>
+              <!--div class="text-caption text-italic">{{sub.startDate}}</div-->
             </div>
-            <div class="column items-center">
-              <div class="text-primary text-h4 text-white">10</div>
-            </div>
-          </q-card-section>
-        </q-card>
-        <q-card class="shadow-4 subscription-card subscription-card__expired">
-          <q-card-section class="row justify-between items-center">
-            <div class="column">
-              <div class="text-bold text-primary text-h6">Test1</div>
-              <div class="text-caption text-bold">Mezz'ora</div>
-              <div class="text-caption text-italic">02/08/2022</div>
-            </div>
-            <div class="column items-center">
-              <div class="text-primary text-h4 text-white">0</div>
-            </div>
-          </q-card-section>
-        </q-card>
-        <q-card class="shadow-4 subscription-card subscription-card__expired">
-          <q-card-section class="row justify-between items-center">
-            <div class="column">
-              <div class="text-bold text-primary text-h6">Test2</div>
-              <div class="text-caption text-bold">Orario</div>
-              <div class="text-caption text-italic">20/07/2022</div>
-            </div>
-            <div class="column items-center">
-              <div class="text-primary text-h4 text-white">0</div>
+            <div class="column justify-between items-end">
+              <div class="text-primary text-h3 text-white">{{sub.lessonLeft}}</div>
+              <div class="text-primary text-caption text-white">Pacchetto lezioni</div>
             </div>
           </q-card-section>
         </q-card>
@@ -83,13 +88,13 @@ onMounted(async () => {
 
 <style scoped lang="scss">
 .subscription-card {
-  width: 50vw;
-  min-width: 50vw;
+  min-width: 70vw;
   border-radius: 20px;
-  background: linear-gradient(315deg, #638229 0%, rgb(129, 185, 58) 45%, transparent 0%);
+  background: linear-gradient(300deg, #638229 0%, rgb(129, 185, 58) 42%, #ffffff 0%);
+  box-shadow: 1px 1px 4px 0px #a69d9d7d;
 
   &__expired {
-    background: linear-gradient(315deg, #e87c03 0%, rgb(232, 124, 3) 45%, transparent 0%)
+    background: linear-gradient(300deg, #e87c03 0%, rgb(232, 124, 3) 42%, #ffffff 0%)
   }
 }
 </style>
