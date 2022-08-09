@@ -137,7 +137,7 @@ onMounted(async () => {
       <div class="row no-wrap q-gutter-md overflow-auto q-py-md">
         <q-card class="booking-card" v-for="sub in userSubscriptionList" :key="sub.id">
           <em></em>
-          <div class="row bg-primary items-center justify-center text-white text-h6 booking-card__header text-bold">
+          <div class="row bg-primary items-center justify-center text-white text-h6 booking-card__header text-bold shadow-2">
             10 AGOSTO
           </div>
           <q-card-section class="column justify-center items-center">
@@ -215,6 +215,7 @@ onMounted(async () => {
   &__header {
     height: 50px;
     border-radius: 20px 20px 0px 0px !important;
+    box-shadow:0 1px 5px #0003,0 2px 2px #00000024,0 3px 1px -2px #0000001f !important;
   }
 }
 
