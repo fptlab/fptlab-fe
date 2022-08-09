@@ -94,7 +94,7 @@ onMounted(async () => {
       <q-separator dark></q-separator>
       <div class="row no-wrap q-gutter-md overflow-auto q-py-md">
         <q-card :class="sub.active ? 'subscription-card subscription-card__active' : 'subscription-card subscription-card__expired'" v-for="sub in userSubscriptionList" :key="sub.id">
-          <q-card-section class="row justify-between items-end">
+          <q-card-section class="row justify-between items-end no-wrap">
             <div class="column q-gutter-xs">
               <div class="text-bold text-primary" style="font-size: 1rem">{{sub.subscriptionType.name}}</div>
               <q-img class="q-mb-xs" src="../../../assets/workout_1h.png" v-if="sub.subscriptionType.workOutDuration === 'ONE_HOUR'" style="width: 50px"></q-img>
