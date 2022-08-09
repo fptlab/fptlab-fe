@@ -13,32 +13,7 @@ const subscriptionSelected = ref(undefined)
 
 layoutData.value.isShown = false
 
-const userSubscriptionList = ref([
-  {
-    id: 1,
-    name: 'HALF HOUR TEN',
-    type: 'HALF_HOUR',
-    startDate: '04/08/2022',
-    lessonLeft: 10,
-    active: true
-  },
-  {
-    id: 2,
-    name: 'HOUR TEN',
-    type: 'HOUR',
-    startDate: '02/07/2022',
-    lessonLeft: 0,
-    active: false
-  },
-  {
-    id: 3,
-    name: 'HALF HOUR TWENTY',
-    type: 'HALF_HOUR',
-    startDate: '20/06/2022',
-    lessonLeft: 0,
-    active: false
-  }
-])
+const userSubscriptionList = ref([])
 
 const subscriptionList = ref([
   {
@@ -84,13 +59,14 @@ function addSubscription () {
 onMounted(async () => {
   const userid = route.params.userid
   await getUser(userid)
-  console.log('USER', user)
+  userSubscriptionList.value = user.value.subscriptionList
+  console.log('USER', userSubscriptionList.value)
 })
 </script>
 
 <template>
   <div>
-    <div class="text-primary q-pa-lg shadow-2 fpt-header radius">
+    <div class="text-primary q-pa-lg shadow-2 bg-black">
       <div class="row justify-between items-center">
         <div class="row q-gutter-md">
           <q-avatar color="primary">
@@ -109,36 +85,63 @@ onMounted(async () => {
       </div>
     </div>
     <div class="q-pa-md">
-      <span class="text-h6 text-white">Ultime sottoscrizioni</span>
+      <div class="row items-center q-gutter-sm">
+        <span class="text-h6 text-white">Ultime sottoscrizioni</span>
+        <q-space/>
+        <q-icon name="format_list_bulleted" color="white" size="sm"></q-icon>
+        <q-icon name="add" color="white" size="sm" @click="dialog = true; subscriptionSelected = false"></q-icon>
+      </div>
       <div class="row no-wrap q-gutter-md overflow-auto q-py-md">
         <q-card :class="sub.active ? 'subscription-card subscription-card__active' : 'subscription-card subscription-card__expired'" v-for="sub in userSubscriptionList" :key="sub.id">
           <q-card-section class="row justify-between items-end">
             <div class="column q-gutter-xs">
-              <div class="text-bold text-primary" style="font-size: 1rem">{{sub.name}}</div>
-              <q-img class="q-mb-xs" src="../../../assets/workout_1h.png" v-if="sub.type === 'HOUR'" style="width: 50px"></q-img>
-              <q-img class="q-mb-xs" src="../../../assets/workout_half1h.png" v-if="sub.type === 'HALF_HOUR'" style="width: 50px"></q-img>
-              <div class="text-caption text-italic">{{sub.startDate}}</div>
+              <div class="text-bold text-primary" style="font-size: 1rem">{{sub.subscriptionType.name}}</div>
+              <q-img class="q-mb-xs" src="../../../assets/workout_1h.png" v-if="sub.subscriptionType.workOutDuration === 'ONE_HOUR'" style="width: 50px"></q-img>
+              <q-img class="q-mb-xs" src="../../../assets/workout_half1h.png" v-if="sub.subscriptionType.workOutDuration === 'HALF_HOUR'" style="width: 50px"></q-img>
+              <div class="text-caption text-italic">{{date.formatDate(sub.startDate, 'DD/MM/YYYY')}}</div>
             </div>
             <div class="column justify-between items-end">
-              <div class="text-primary text-h4 text-white">{{sub.lessonLeft}}</div>
+              <div class="text-primary text-h4 text-white">{{sub.reservationLeft}}</div>
               <div class="text-primary text-caption text-white">Lezioni</div>
             </div>
           </q-card-section>
         </q-card>
       </div>
-      <div class="row justify-end items-center">
+      <!--div class="row justify-end items-center">
         <q-item tag="a" class="text-white items-center" :to="user.id + '/subscriptions'">Visualizza tutte</q-item>
         <q-btn text-color="white" label="Aggiungi" no-caps icon-right="more_time" class="bg-primary" @click="dialog = true; subscriptionSelected = false" push/>
-      </div>
+      </div-->
     </div>
 
     <div class="q-pa-md">
-      <span class="text-h6 text-white">Ultime prenotazioni</span>
+      <div class="row items-center q-gutter-sm">
+        <span class="text-h6 text-white">Ultime prenotazioni</span>
+        <q-space/>
+        <q-icon name="format_list_bulleted" color="white" size="sm"></q-icon>
+      </div>
       <div class="row no-wrap q-gutter-md overflow-auto q-py-md">
         <q-card class="booking-card" v-for="sub in userSubscriptionList" :key="sub.id">
           <em></em>
-          <div class="row bg-primary items-center justify-center text-white text-h6 booking-card__header text-bold shadow-2">
-            10 AGOSTO
+          <div class="row justify-center items-center bg-primary text-white text-h6 booking-card__header text-bold shadow-2">
+            <q-space v-if="sub.active"/>
+            <q-space v-if="sub.active"/>
+            <div>10 AGOSTO</div>
+            <q-space v-if="sub.active"/>
+            <q-btn flat round dense icon="more_vert" v-if="sub.active">
+              <q-menu fit transition-show="flip-right"
+                       transition-hide="flip-left">
+                <q-list style="min-width: 200px">
+                  <q-item clickable v-close-popup>
+                    <q-item-section>
+                      <div class="row justify-between items-center">
+                        Elimina prenotazione
+                        <q-icon name="delete" size="sm" color="red"></q-icon>
+                      </div>
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </q-menu>
+            </q-btn>
           </div>
           <q-card-section class="column justify-center items-center">
             <div class="row justify-center items-center q-mb-sm">
@@ -152,14 +155,15 @@ onMounted(async () => {
           </div-->
         </q-card>
       </div>
-      <div class="row justify-end">
+      <!--div class="row justify-end">
         <q-item tag="a" class="text-white no-padding" :to="user.id + '/subscriptions'">Visualizza tutte</q-item>
-      </div>
+      </div-->
     </div>
 
     <q-dialog v-model="dialog" position="bottom">
       <q-card class="q-pa-xs">
         <q-card-section>
+          <q-item-label class="text-primary text-h6 text-bold">Seleziona l'abbonamento</q-item-label>
           <div class="row no-wrap q-gutter-md overflow-auto q-py-md">
             <q-card @click="subscriptionSelected = sub.id"
                     :class="subscriptionSelected === sub.id ? 'subscription-card subscription-card__selected shadow-2' : 'subscription-card shadow-2'"
@@ -216,6 +220,7 @@ onMounted(async () => {
     height: 50px;
     border-radius: 20px 20px 0px 0px !important;
     box-shadow:0 1px 5px #0003,0 2px 2px #00000024,0 3px 1px -2px #0000001f !important;
+    background: linear-gradient(300deg, #638229 0%, rgb(129, 185, 58) 58%, #638229 0%) !important;
   }
 }
 
@@ -235,8 +240,8 @@ onMounted(async () => {
   -webkit-box-shadow:0 1px 1px #fff;
   box-shadow:0 1px 1px #fff;
 }
-.booking-card:before{left:11px;}
-.booking-card:after{right:11px;}
+.booking-card:before{left:30px;}
+.booking-card:after{right:30px;}
 
 .booking-card em:before, .booking-card em:after{
   content:'';
@@ -253,6 +258,6 @@ onMounted(async () => {
   -webkit-border-radius:2px;
   border-radius:2px;
 }
-.booking-card em:before{left:13px;}
-.booking-card em:after{right:13px;}
+.booking-card em:before{left:32px;}
+.booking-card em:after{right:32px;}
 </style>

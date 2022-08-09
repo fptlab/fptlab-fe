@@ -13,7 +13,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <q-layout view="hHh lpR fFf" class="fpt-bg-gradient">
+  <q-layout view="hHh lpR fFf" class="fpt-header">
 
     <q-header v-if="layoutData.isShown" class="q-pa-md bg-transparent flex text-white justify-between items-center" reveal>
       <q-icon name="fa-solid fa-angle-left" class="text-white" @click="$router.back()"></q-icon>
