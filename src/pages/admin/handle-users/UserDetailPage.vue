@@ -91,6 +91,7 @@ onMounted(async () => {
         <q-icon name="format_list_bulleted" color="white" size="sm"></q-icon>
         <q-icon name="add" color="white" size="sm" @click="dialog = true; subscriptionSelected = false"></q-icon>
       </div>
+      <q-separator dark></q-separator>
       <div class="row no-wrap q-gutter-md overflow-auto q-py-md">
         <q-card :class="sub.active ? 'subscription-card subscription-card__active' : 'subscription-card subscription-card__expired'" v-for="sub in userSubscriptionList" :key="sub.id">
           <q-card-section class="row justify-between items-end">
@@ -119,6 +120,7 @@ onMounted(async () => {
         <q-space/>
         <q-icon name="format_list_bulleted" color="white" size="sm"></q-icon>
       </div>
+      <q-separator dark></q-separator>
       <div class="row no-wrap q-gutter-md overflow-auto q-py-md">
         <q-card class="booking-card" v-for="sub in userSubscriptionList" :key="sub.id">
           <em></em>
