@@ -145,8 +145,8 @@ onMounted(async () => {
           </div>
           <q-card-section class="column justify-center items-center">
             <div class="row justify-center items-center q-mb-sm">
-              <q-img src="../../../assets/workout_1h.png" v-if="sub.type === 'HOUR'" style="width: 70px"></q-img>
-              <q-img src="../../../assets/workout_half1h.png" v-if="sub.type === 'HALF_HOUR'" style="width: 70px"></q-img>
+              <q-img src="../../../assets/workout_1h.png" v-if="sub.subscriptionType.workOutDuration === 'ONE_HOUR'" style="width: 70px"></q-img>
+              <q-img src="../../../assets/workout_half1h.png" v-if="sub.subscriptionType.workOutDuration === 'HALF_HOUR'" style="width: 70px"></q-img>
             </div>
             <div class="text-secondary text-bold text-h6">10:00 - 10:30</div>
           </q-card-section>
