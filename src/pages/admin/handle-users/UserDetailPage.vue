@@ -19,7 +19,7 @@ const subscriptionList = ref([
   {
     id: 1,
     name: 'HALF HOUR TEN',
-    type: 'HALF_HOUR',
+    type: 'HALF_AN_HOUR',
     lessons: 10
   },
   {
@@ -31,7 +31,7 @@ const subscriptionList = ref([
   {
     id: 3,
     name: 'HALF HOUR TWENTY',
-    type: 'HALF_HOUR',
+    type: 'HALF_AN_HOUR',
     lessons: 20
   },
   {
@@ -98,7 +98,7 @@ onMounted(async () => {
             <div class="column q-gutter-xs">
               <div class="text-bold text-primary" style="font-size: 1rem">{{sub.subscriptionType.name}}</div>
               <q-img class="q-mb-xs" src="../../../assets/workout_1h.png" v-if="sub.subscriptionType.workOutDuration === 'ONE_HOUR'" style="width: 50px"></q-img>
-              <q-img class="q-mb-xs" src="../../../assets/workout_half1h.png" v-if="sub.subscriptionType.workOutDuration === 'HALF_HOUR'" style="width: 50px"></q-img>
+              <q-img class="q-mb-xs" src="../../../assets/workout_half1h.png" v-if="sub.subscriptionType.workOutDuration === 'HALF_AN_HOUR'" style="width: 50px"></q-img>
               <div class="text-caption text-italic">{{date.formatDate(sub.startDate, 'DD/MM/YYYY')}}</div>
             </div>
             <div class="column justify-between items-end">
@@ -148,7 +148,7 @@ onMounted(async () => {
           <q-card-section class="column justify-center items-center">
             <div class="row justify-center items-center q-mb-sm">
               <q-img src="../../../assets/workout_1h.png" v-if="sub.subscriptionType.workOutDuration === 'ONE_HOUR'" style="width: 70px"></q-img>
-              <q-img src="../../../assets/workout_half1h.png" v-if="sub.subscriptionType.workOutDuration === 'HALF_HOUR'" style="width: 70px"></q-img>
+              <q-img src="../../../assets/workout_half1h.png" v-if="sub.subscriptionType.workOutDuration === 'HALF_AN_HOUR'" style="width: 70px"></q-img>
             </div>
             <div class="text-secondary text-bold text-h6">10:00 - 10:30</div>
           </q-card-section>
@@ -174,7 +174,7 @@ onMounted(async () => {
                 <div class="column q-gutter-xs">
                   <div class="text-bold text-primary" style="font-size: 1rem">{{sub.name}}</div>
                   <q-img class="q-mb-xs" src="../../../assets/workout_1h.png" v-if="sub.type === 'HOUR'" style="width: 45px"></q-img>
-                  <q-img class="q-mb-xs" src="../../../assets/workout_half1h.png" v-if="sub.type === 'HALF_HOUR'" style="width: 45px"></q-img>
+                  <q-img class="q-mb-xs" src="../../../assets/workout_half1h.png" v-if="sub.type === 'HALF_AN_HOUR'" style="width: 45px"></q-img>
                 </div>
                 <div class="column justify-between items-end">
                   <div class="text-primary text-h4 text-white">{{sub.lessons}}</div>
