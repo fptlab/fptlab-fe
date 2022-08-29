@@ -37,37 +37,40 @@ onMounted(async () => {
 
 </script>
 <template>
-  <div v-if="users.length <= 0">
-    <skeleton-title></skeleton-title>
-    <skeleton-list></skeleton-list>
-  </div>
-  <div v-else>
-    <q-list v-if="users.length > 0">
-      <div v-for="user in filterList" :key="user.id">
-        <q-item class="q-my-sm" clickable v-ripple :to="'handle-users/' + user.id">
-          <q-item-section avatar>
-            <q-avatar color="primary" class="shadow-3 text-white">
-              <img src="../../../assets/avatar2.png">
-            </q-avatar>
-          </q-item-section>
+  <q-page>
 
-          <q-item-section>
-            <q-item-label class="text-white q-mb-xs">{{ user.firstName }} {{ user.lastName }}</q-item-label>
-            <q-item-label class="text-white" caption lines="1" >{{ user.email }}</q-item-label>
-          </q-item-section>
+    <div v-if="users.length <= 0">
+      <skeleton-title></skeleton-title>
+      <skeleton-list></skeleton-list>
+    </div>
+    <div v-else>
+      <q-list v-if="users.length > 0">
+        <div v-for="user in filterList" :key="user.id">
+          <q-item class="q-my-sm" clickable v-ripple :to="'handle-users/' + user.id">
+            <q-item-section avatar>
+              <q-avatar color="primary" class="shadow-3 text-white">
+                <img src="../../../assets/avatar2.png">
+              </q-avatar>
+            </q-item-section>
 
-          <q-item-section side>
-            <q-icon name="fiber_smart_record" :color="user.enabled ? 'positive' : 'negative'" size="xs"/>
-          </q-item-section>
+            <q-item-section>
+              <q-item-label class="text-white q-mb-xs">{{ user.firstName }} {{ user.lastName }}</q-item-label>
+              <q-item-label class="text-white" caption lines="1" >{{ user.email }}</q-item-label>
+            </q-item-section>
 
-          <q-item-section side>
-            <q-icon name="chevron_right" size="xs"/>
-          </q-item-section>
-        </q-item>
-        <q-separator color="grey" inset />
-      </div>
-    </q-list>
-  </div>
+            <q-item-section side>
+              <q-icon name="fiber_smart_record" :color="user.enabled ? 'positive' : 'negative'" size="xs"/>
+            </q-item-section>
+
+            <q-item-section side>
+              <q-icon name="chevron_right" size="xs"/>
+            </q-item-section>
+          </q-item>
+          <q-separator color="grey" inset />
+        </div>
+      </q-list>
+    </div>
+  </q-page>
 
 </template>
 

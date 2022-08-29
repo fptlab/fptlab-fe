@@ -11,7 +11,8 @@ const route = useRoute()
 const dialog = ref(false)
 const subscriptionSelected = ref(undefined)
 
-layoutData.value.isShown = false
+layoutData.value.isShown = true
+layoutData.value.title = 'Profilo'
 
 const userSubscriptionList = ref([])
 
@@ -65,22 +66,15 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
-    <div class="text-primary q-pa-lg shadow-2 bg-black">
-      <div class="row justify-between items-center">
-        <div class="row q-gutter-md">
-          <q-avatar color="primary">
-            <img src="../../../assets/avatar2.png">
-          </q-avatar>
-          <div class="text-h6 text-white column">
-            <div>{{user.firstName}} {{user.lastName}}</div>
-            <div class="text-caption text-primary">
-              {{user.email}}
-            </div>
-          </div>
-        </div>
-        <div class="column items-center">
-          <q-icon name="fiber_smart_record" size="md" @click="user.enabled = !user.enabled" :color="user.enabled ? 'primary' : 'negative'" ></q-icon>
+  <q-page>
+    <div class="column justify-center items-center bg-black q-pb-md">
+      <q-avatar color="primary" size="120px" class="q-mb-md">
+        <img src="../../../assets/avatar2.png">
+      </q-avatar>
+      <div class="text-h6 text-white column">
+        <div>{{user.firstName}} {{user.lastName}}</div>
+        <div class="text-caption text-primary text-center">
+          {{user.email}}
         </div>
       </div>
     </div>
@@ -189,7 +183,7 @@ onMounted(async () => {
         </q-card-actions>
       </q-card>
     </q-dialog>
-  </div>
+  </q-page>
 </template>
 
 <style scoped lang="scss">
