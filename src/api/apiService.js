@@ -59,8 +59,6 @@ const errorInterceptor = async (error) => {
 const responseInterceptor = response => {
   switch (response.status) {
     case 200:
-      console.log(response.status)
-      console.log(response.data)
       if (response.data.message) {
         Notify.create({
           type: 'positive',
@@ -68,9 +66,7 @@ const responseInterceptor = response => {
         })
       }
       break
-    default:
   }
-
   return response
 }
 
@@ -106,10 +102,6 @@ const ApiService = {
 
   update (resource, params) {
     return app.axios.put(`${resource}`, params)
-  },
-
-  put (resource, body) {
-    return app.axios.put(`${resource}`, body)
   },
 
   delete (resource, body) {

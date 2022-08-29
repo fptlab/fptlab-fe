@@ -2,7 +2,6 @@
 const routes = [
   {
     path: '/',
-    redirect: '/admin/handle-users',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: 'admin/handle-users', component: () => import('pages/admin/handle-users/UserListPage.vue') },

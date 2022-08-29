@@ -2,13 +2,20 @@
 import { onMounted, ref } from 'vue'
 import useUser from 'src/composables/useUser'
 import useMainLayout from 'src/composables/useMainLayout'
-const { profile } = useUser()
+import { useRouter } from 'vue-router'
+const { profile, loggedUser } = useUser()
 const { layoutData } = useMainLayout()
+const router = useRouter()
 
 const tab = ref('users')
+const isAdmin = ref(false)
 
 onMounted(async () => {
   await profile()
+  isAdmin.value = loggedUser.value.roles.some((role) => role.name === 'ROLE_ADMIN')
+  if (isAdmin.value) {
+    await router.replace('/admin/handle-users')
+  }
 })
 </script>
 
@@ -32,13 +39,13 @@ onMounted(async () => {
         narrow-indicator
         align="justify"
         v-model="tab">
-        <q-route-tab name="users" to="/admin/handle-users" exact class="unActive-icon" active-class="active-icon text-primary">
+        <q-route-tab v-if="isAdmin" name="users" to="/admin/handle-users" exact class="unActive-icon" active-class="active-icon text-primary">
           <q-icon name="fa-solid fa-people-group" size="sm"></q-icon>
         </q-route-tab>
-        <q-route-tab name="bookings" to="/admin/handle-bookings" exact class="unActive-icon" active-class="active-icon text-primary">
+        <q-route-tab v-if="isAdmin" name="bookings" to="/admin/handle-bookings" exact class="unActive-icon" active-class="active-icon text-primary">
           <q-icon name="fa-solid fa-calendar-days" size="sm"></q-icon>
         </q-route-tab>
-        <q-route-tab name="trainers" to="/admin/handle-trainers" exact class="unActive-icon" active-class="active-icon text-primary">
+        <q-route-tab v-if="isAdmin" name="trainers" to="/admin/handle-trainers" exact class="unActive-icon" active-class="active-icon text-primary">
           <q-icon name="fa-solid fa-dumbbell" size="sm"></q-icon>
         </q-route-tab>
       </q-tabs>
