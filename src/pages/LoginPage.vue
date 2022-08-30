@@ -22,7 +22,7 @@ async function doLogin () {
 <template>
   <q-layout>
     <q-page-container>
-      <q-page class="column bg-black no-wrap items-center content-stretch justify-center">
+      <q-page class="column no-wrap items-center content-stretch justify-center bg-login">
           <q-img :src="logo" style="width: 200px" class="q-mb-lg"/>
           <q-form @submit="doLogin" class="q-gutter-y-xs">
             <q-input bg-color="white"
