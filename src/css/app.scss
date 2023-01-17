@@ -1,3 +1,13 @@
+@font-face {
+  font-family: mulish;
+  src: url(./font/Mulish-VariableFont_wght.ttf);
+}
+
+body {
+  font-family: 'mulish';
+  color: $text-primary;
+}
+
 .q-field--error .q-field__bottom {
   padding-left: 0;
 }
@@ -17,4 +27,20 @@
 
 .fpt-bg-gradient {
   background: linear-gradient(to top, #345734 0%, black 100%);
+}
+
+.bg-main-secondary {
+  background: $background-third;
+}
+
+.main-card {
+  border-radius: 15px !important;
+}
+
+.rounded-input .q-field--outlined .q-field__control {
+  border-radius: 15px !important;
+}
+
+.rounded-input .q-field--outlined .q-field__control:before {
+  border: 1px solid $background-secondary !important;
 }

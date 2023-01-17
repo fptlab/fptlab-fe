@@ -13,11 +13,15 @@ const routes = [
     ]
   },
   {
-    path: '/login',
+    path: '/loginOld',
     component: () => import('pages/LoginPage.vue'),
     name: 'login'
   },
-
+  {
+    path: '/login',
+    component: () => import('pages/LoginPageNS.vue'),
+    name: 'login'
+  },
   {
     path: '/register',
     component: () => import('pages/register-user/RegisterPage.vue'),
